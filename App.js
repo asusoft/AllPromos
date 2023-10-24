@@ -2,14 +2,12 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { COLORS } from './assets/constants/theme';
-import Layout from './src/screens/AuthScreens/Layout';
+import SignIn from './src/screens/AuthScreens/SignIn';
 
 // create a component
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Apps</Text>
-    </View>
+    <SignIn />
   );
 };
 

@@ -19,7 +19,6 @@ export default {
     eye,
     gift,
     home,
-    eye_close,
     info,
     user,
     vk,
