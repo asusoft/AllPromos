@@ -5,13 +5,14 @@ import Layout from './Layout';
 import { COLORS, SIZES } from '../../../assets/constants/theme';
 import icons from '../../../assets/constants/icons';
 import Forminput from '../../components/Forminput';
+import TextButton from './../../components/TextButton';
 
 // create a component
 const SignIn = () => {
 
     function RenderForm() {
         return (
-            <View style={{ marginTop: 20 }}>
+            <View style={{ marginVertical: 20 }}>
                 <Forminput
                     placeholder="Логин или телефон"
                 />
@@ -46,6 +47,7 @@ const SignIn = () => {
                 }}
             >
                 {RenderForm()}
+                <TextButton text="Войти" color={COLORS.primary} />
 
             </Layout>
         </View>
