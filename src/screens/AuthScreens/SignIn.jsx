@@ -48,7 +48,12 @@ const SignIn = () => {
             >
                 {RenderForm()}
                 <TextButton text="Войти" color={COLORS.primary} />
-
+                <Text style={styles.recover}>Не помню пароль</Text>
+                <View style={{ marginTop: "auto" }}>
+                    <TextButton icon={icons.vk} text="Войти через Вконтакте" color={COLORS.blue} />
+                    <TextButton icon={icons.yandex} text="Войти через Яндекс" color={COLORS.orange} />
+                </View>
+                <Text style={styles.register}>Регистрация</Text>
             </Layout>
         </View>
     );
@@ -64,6 +69,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    register: {
+        marginBottom: 'auto',
+        alignSelf: 'center',
+        marginTop: 'auto',
+        color: COLORS.black,
+        fontSize: SIZES.body
+    },
+    recover: {
+        alignSelf: 'center',
+        marginTop: 15,
+        color: COLORS.light,
+        fontSize: SIZES.font
+    }
 });
 
 //make this component available to the app

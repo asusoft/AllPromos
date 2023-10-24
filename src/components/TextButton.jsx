@@ -17,7 +17,7 @@ const TextButton = ({ icon, text, color }) => {
             }
             <Text style={{
                 color: COLORS.white,
-                fontWeight: "600"
+                fontSize: SIZES.body
             }}>{text}</Text>
         </View>
     );
@@ -25,6 +25,7 @@ const TextButton = ({ icon, text, color }) => {
 
 const styles = StyleSheet.create({
     button: {
+        marginTop: 10,
         height: 45,
         borderRadius: SIZES.radius,
         alignItems: "center",
@@ -33,8 +34,8 @@ const styles = StyleSheet.create({
         gap: 10
     },
     icon: {
-        height: 25,
-        width: 25,
+        height: 20,
+        width: 20,
         tintColor: COLORS.light,
         tintColor: COLORS.white
     }
