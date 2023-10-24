@@ -1,12 +1,14 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { COLORS } from './assets/constants/theme';
+import Layout from './src/screens/AuthScreens/Layout';
 
 // create a component
 const App = () => {
   return (
     <View style={styles.container}>
-      <Text>App</Text>
+      <Text>Apps</Text>
     </View>
   );
 };
@@ -17,7 +19,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
+    backgroundColor: COLORS.background,
   },
 });
 
