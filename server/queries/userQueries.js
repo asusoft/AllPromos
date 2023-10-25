@@ -34,6 +34,9 @@ export const FETCH_USER_QUERY = gql`
         subscribersCount
         website
         shortDescription
+        avatar {
+          path
+        }
       }
 
       ... on BaseError {
