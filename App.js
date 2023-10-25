@@ -1,30 +1,19 @@
-//import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { COLORS } from './assets/constants/theme';
-import SignIn from './src/screens/AuthScreens/SignIn';
-import DrawScreen from './src/screens/DrawScreen/DrawScreen';
+import 'react-native-gesture-handler';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigator from './navigations/Index';
 
 import { AuthProvider } from './contexts/authContext/AuthContext';
 
 // create a component
 const App = () => {
   return (
-    <AuthProvider>
-      <SignIn />
-    </AuthProvider>
+    <NavigationContainer>
+      <AuthProvider>
+        <RootNavigator />
+      </AuthProvider>
+    </NavigationContainer>
   );
 };
 
-// define your styles
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: COLORS.background,
-  },
-});
-
-//make this component available to the app
 export default App;
