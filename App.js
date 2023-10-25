@@ -5,10 +5,14 @@ import { COLORS } from './assets/constants/theme';
 import SignIn from './src/screens/AuthScreens/SignIn';
 import DrawScreen from './src/screens/DrawScreen/DrawScreen';
 
+import { AuthProvider } from './contexts/authContext/AuthContext';
+
 // create a component
 const App = () => {
   return (
-    <SignIn />
+    <AuthProvider>
+      <SignIn />
+    </AuthProvider>
   );
 };
 
