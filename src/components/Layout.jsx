@@ -2,8 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native';
 import Header from './Header';
 import { COLORS, SIZES } from '../../assets/constants/theme';
-import images from '../../assets/constants/images';
-import icons from '../../assets/constants/icons';
 
 const Layout = ({
     title,
@@ -48,8 +46,6 @@ const Layout = ({
                     }
                 </View>
             </View>
-
-            {/* Content */}
             {children}
         </SafeAreaView>
     );

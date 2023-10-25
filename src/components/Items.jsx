@@ -23,7 +23,6 @@ const Items = ({ items }) => {
                     </View>
                 ))
             }
-
         </View>
     );
 }

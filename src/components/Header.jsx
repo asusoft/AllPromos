@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         position: 'absolute',
-        left: 10,
+        left: 0,
         width: 30,
         height: 30,
     },

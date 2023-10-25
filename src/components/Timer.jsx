@@ -29,14 +29,6 @@ const Timer = ({ timer }) => {
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: SIZES.base
-    },
-    logo: {
-        height: 130,
-        width: 130,
-    },
     timer: {
         width: 70,
         height: 106,

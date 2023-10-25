@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, ImageBackground, SafeAreaView, Image } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 import Layout from '../../components/Layout';
 import Timer from './../../components/Timer';
 import Items from './../../components/Items';
 import images from '../../../assets/constants/images';
 import icons from '../../../assets/constants/icons';
+
 import { COLORS, SIZES } from '../../../assets/constants/theme';
 import { ITEMS } from '../../../assets/constants/dummyData';
+import TextButton from '../../components/TextButton';
 
 // create a component
 const DrawScreen = () => {
@@ -45,7 +47,6 @@ const DrawScreen = () => {
             >
                 <View style={{ marginVertical: 20, alignItems: 'center' }}>
                     <Timer timer={timer} />
-
                     <View style={{ marginTop: SIZES.padding, gap: 15, alignItems: 'center', justifyContent: 'center' }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text
@@ -75,11 +76,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: SIZES.base
-    },
-    logo: {
-        height: 130,
-        width: 130,
-    },
+    }
 });
 
 //make this component available to the app
