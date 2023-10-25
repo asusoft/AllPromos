@@ -36,7 +36,7 @@ const DrawScreen = () => {
     return (
         <ImageBackground style={styles.container} source={images.background_image}>
             <Layout
-                title="Авторизация"
+                title="Розыгрыш"
                 leftIcon={icons.Arrow_left_long}
                 titleColor="white"
                 logo={images.logo_white}
