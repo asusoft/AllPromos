@@ -23,7 +23,7 @@ const Forminput = ({
                 secureTextEntry={secureTextEntry}
                 keyboardType={keyboardType}
                 autoComplete={autoComplete}
-                autoCapitalize={autoCapitalize}
+                autoCapitalize={false}
                 onChangeText={text => onChange(text)}
                 value={value}
             />

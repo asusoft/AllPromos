@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { COLORS, SIZES } from "../../assets/constants/theme";
 
 
-const TextButton = ({ icon, text, color }) => {
+const TextButton = ({ icon, text, color, onPress }) => {
     return (
-        <View style={{ backgroundColor: color, ...styles.button }}>
+        <TouchableOpacity onPress={() => onPress()} style={{ backgroundColor: color, ...styles.button }}>
             {
                 icon ? (
                     <Image
@@ -19,7 +19,7 @@ const TextButton = ({ icon, text, color }) => {
                 color: COLORS.white,
                 fontSize: SIZES.body
             }}>{text}</Text>
-        </View>
+        </TouchableOpacity>
     );
 }
 

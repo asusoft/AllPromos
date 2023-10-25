@@ -8,7 +8,7 @@ import DrawScreen from './src/screens/DrawScreen/DrawScreen';
 // create a component
 const App = () => {
   return (
-    <DrawScreen />
+    <SignIn />
   );
 };
 
