@@ -1,11 +1,12 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import Layout from './Layout';
+import Layout from '../../components/Layout';
 import { COLORS, SIZES } from '../../../assets/constants/theme';
 import icons from '../../../assets/constants/icons';
 import Forminput from '../../components/Forminput';
 import TextButton from './../../components/TextButton';
+import images from '../../../assets/constants/images';
 
 // create a component
 const SignIn = () => {
@@ -41,10 +42,10 @@ const SignIn = () => {
         <View style={styles.container}>
             <Layout
                 title="Авторизация"
+                leftIcon={icons.back}
+                titleColor="black"
+                logo={images.logo_black}
                 subtitle="Войти"
-                titleContainerStyle={{
-                    marginTop: SIZES.padding,
-                }}
             >
                 {RenderForm()}
                 <TextButton text="Войти" color={COLORS.primary} />

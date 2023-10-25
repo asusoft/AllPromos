@@ -2,17 +2,16 @@ import React from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
 import { COLORS } from "../../assets/constants/theme";
 
-
-const Header = ({ title, icon }) => {
+const Header = ({ title, icon, color }) => {
     return (
         <View style={styles.Header}>
             <Image
                 source={icon}
                 resizeMode='contain'
-                style={styles.icon}
+                style={{ tintColor: COLORS[color], ...styles.icon }}
             />
             <Text
-                style={styles.title}
+                style={{ color: COLORS[color], ...styles.title }}
             >
                 {title}
             </Text>
@@ -27,16 +26,16 @@ const styles = StyleSheet.create({
         right: 0,
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: 'center',
     },
     icon: {
-        width: 40,
-        height: 40,
-        tintColor: COLORS
+        position: 'absolute',
+        left: 10,
+        width: 30,
+        height: 30,
     },
     title: {
         fontSize: 18,
-        color: COLORS.black,
-        marginLeft: "22%"
     }
 });
 
