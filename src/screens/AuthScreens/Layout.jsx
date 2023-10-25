@@ -1,6 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native';
+import Header from './../../components/Header';
 import { COLORS, SIZES } from '../../../assets/constants/theme';
 import images from '../../../assets/constants/images';
 import icons from '../../../assets/constants/icons';
@@ -15,28 +16,7 @@ const Layout = ({
 
     function RenderHeader() {
         return (
-            <View style={styles.Header}>
-                {/* Back Button */}
-
-                <Image
-                    source={icons.back}
-                    resizeMode='contain'
-                    style={{
-                        width: 40,
-                        height: 40,
-                        tintColor: COLORS.black
-                    }}
-                />
-                <Text
-                    style={{
-                        fontSize: 18,
-                        color: COLORS.black,
-                        marginLeft: "22%"
-                    }}
-                >
-                    {title}
-                </Text>
-            </View>
+            <Header title={title} icon={icons.back} />
         );
     }
     return (

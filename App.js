@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { COLORS } from './assets/constants/theme';
 import SignIn from './src/screens/AuthScreens/SignIn';
+import DrawScreen from './src/screens/DrawScreen/DrawScreen';
 
 // create a component
 const App = () => {
