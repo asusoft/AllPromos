@@ -31,7 +31,11 @@ export const FETCH_USER_QUERY = gql`
         address {
             city
         }
+        subscribersCount
+        website
+        shortDescription
       }
+
       ... on BaseError {
         status
       }

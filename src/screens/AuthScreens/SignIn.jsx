@@ -8,18 +8,35 @@ import Forminput from '../../components/Forminput';
 import TextButton from './../../components/TextButton';
 import images from '../../../assets/constants/images';
 
+import { useAuth } from '../../../contexts/authContext/AuthContext';
+
 // create a component
 const SignIn = () => {
+
+    const [login, setLogin] = React.useState("");
+    const [password, setPassword] = React.useState("");
+
+    const { signInUser, authUser } = useAuth()
+
+    const handlSignIn = async () => {
+        try {
+            await signInUser(login, password)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     function RenderForm() {
         return (
             <View style={{ marginVertical: 20 }}>
                 <Forminput
                     placeholder="Логин или телефон"
+                    onChange={setLogin}
                 />
                 <Forminput
                     placeholder="Пароль"
                     secureTextEntry={true}
+                    onChange={setPassword}
                     appendComponent={
                         <TouchableOpacity
                             style={styles.appendComponentPassword}>
@@ -37,7 +54,6 @@ const SignIn = () => {
         );
     }
 
-
     return (
         <View style={styles.container}>
             <Layout
@@ -48,7 +64,7 @@ const SignIn = () => {
                 subtitle="Войти"
             >
                 {RenderForm()}
-                <TextButton text="Войти" color={COLORS.primary} />
+                <TextButton text="Войти" color={COLORS.primary} onPress={handlSignIn} />
                 <Text style={styles.recover}>Не помню пароль</Text>
                 <View style={{ marginTop: "auto" }}>
                     <TextButton icon={icons.vk} text="Войти через Вконтакте" color={COLORS.blue} />

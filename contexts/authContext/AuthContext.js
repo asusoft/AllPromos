@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { loginUser } from '../../server/services/authService';
+import { loginUser, fetchUserData } from '../../server/services/authService';
 
 const AuthContext = createContext();
 
@@ -29,8 +29,7 @@ export const AuthProvider = ({ children }) => {
             const userData = await fetchUserData();
 
             if (userData.__typename === 'User') {
-                console.log('User Data:', userData);
-
+                setAuthUser(userData)
             } else if (userData.__typename === 'BaseError') {
                 console.error('Error fetching user data:', userData.status);
             }
@@ -40,11 +39,13 @@ export const AuthProvider = ({ children }) => {
     };
 
     React.useEffect(() => {
-        const fetchData = async () => {
-            const userData = await fetchAndHandleUserData()
+        async function fetchData() {
+            await fetchAndHandleUserData()
         }
-        return fetchData()
 
+        if (authToken) {
+            fetchData()
+        }
     }, [authToken])
 
     return (
