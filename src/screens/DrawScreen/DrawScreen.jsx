@@ -1,12 +1,12 @@
-
-//import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ImageBackground, SafeAreaView, Image } from 'react-native';
 import Layout from '../../components/Layout';
 import Timer from './../../components/Timer';
+import Items from './../../components/Items';
 import images from '../../../assets/constants/images';
 import icons from '../../../assets/constants/icons';
 import { COLORS, SIZES } from '../../../assets/constants/theme';
+import { ITEMS } from '../../../assets/constants/dummyData';
 
 // create a component
 const DrawScreen = () => {
@@ -44,8 +44,26 @@ const DrawScreen = () => {
                 subtitleIcon={icons.question}
             >
                 <View style={{ marginVertical: 20, alignItems: 'center' }}>
-
                     <Timer timer={timer} />
+
+                    <View style={{ marginTop: SIZES.padding, gap: 15, alignItems: 'center', justifyContent: 'center' }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text
+                                style={{
+                                    textAlign: 'center',
+                                    color: COLORS.white,
+                                    fontSize: 14
+                                }}>
+                                Разыгрываем сегодня
+                            </Text>
+                            <Image
+                                source={icons.question}
+                                resizeMode="contain"
+                                style={{ height: 20, width: 20 }}
+                            />
+                        </View>
+                        <Items items={ITEMS} />
+                    </View>
                 </View>
             </Layout>
         </ImageBackground>

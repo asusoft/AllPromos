@@ -14,7 +14,6 @@ const Timer = ({ timer }) => {
         );
     };
 
-
     return (
         <View style={{
             flexDirection: 'row'
@@ -39,9 +38,9 @@ const styles = StyleSheet.create({
         width: 130,
     },
     timer: {
-        width: 65,
-        height: 100,
-        borderRadius: 50,
+        width: 70,
+        height: 106,
+        borderRadius: 55,
         alignItems: 'center',
         justifyContent: 'center',
         margin: 5,
