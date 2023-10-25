@@ -66,6 +66,9 @@ const DrawScreen = () => {
                         <Items items={ITEMS} />
                     </View>
                 </View>
+                <View style={{ marginTop: "auto" }}>
+                    <TextButton text="Участвовать" color={COLORS.primary} />
+                </View>
             </Layout>
         </ImageBackground>
     );
