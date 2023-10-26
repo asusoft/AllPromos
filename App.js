@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import RootNavigator from './navigations/Index';
+import RootNavigator from './src/navigations/Index';
 
-import { AuthProvider } from './contexts/authContext/AuthContext';
+import { AuthProvider } from './src/contexts/authContext/AuthContext';
 
 // create a component
 const App = () => {

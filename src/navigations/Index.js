@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useAuth } from "../contexts/authContext/AuthContext";
-import { COLORS, SIZES } from "../assets/constants/theme";
+import { COLORS } from "../../assets/constants/theme";
 import { Image } from "react-native";
-import icons from "../assets/constants/icons";
-import DrawScreen from "../src/screens/DrawScreen/DrawScreen";
-import UserInfoScreen from "../src/screens/UserInfoScreen/UserInfo";
-import SignIn from "../src/screens/AuthScreens/SignIn";
-import TempScreen from "../src/screens/TempScreen";
+import icons from "../../assets/constants/icons";
+import DrawScreen from "../screens/DrawScreen/DrawScreen";
+import UserInfoScreen from "../screens/UserInfoScreen/UserInfo";
+import SignIn from "../screens/AuthScreens/SignIn";
+import TempScreen from "../screens/TempScreen";
 
 const RootStack = createNativeStackNavigator();
 
@@ -22,9 +22,7 @@ const RootNavigator = () => {
                     <RootStack.Screen name="BottomTab" component={BottomTabNavigator} />
                     :
                     (
-
                         <RootStack.Screen name="Auth" component={SignIn} />
-
                     )
 
             }

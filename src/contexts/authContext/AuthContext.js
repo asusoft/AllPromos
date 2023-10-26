@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { loginUser, fetchUserData, signOutUser } from '../../server/services/authService';
+import { loginUser, fetchUserData, signOutUser } from '../../../server/services/authService';
 
 const AuthContext = createContext();
 

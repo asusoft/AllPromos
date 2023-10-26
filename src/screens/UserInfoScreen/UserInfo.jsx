@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, SafeAreaView, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import icons from '../../../assets/constants/icons';
 import { COLORS, SIZES } from '../../../assets/constants/theme';
-import { useAuth } from '../../../contexts/authContext/AuthContext';
+import { useAuth } from '../../contexts/authContext/AuthContext';
 import UserStats from './../../components/UserStats';
 import PersonalInfo from './../../components/PersonalInfo';
 

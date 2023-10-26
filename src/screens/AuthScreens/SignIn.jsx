@@ -8,8 +8,8 @@ import Forminput from '../../components/Forminput';
 import TextButton from './../../components/TextButton';
 import images from '../../../assets/constants/images';
 
-import { useAuth } from '../../../contexts/authContext/AuthContext';
-import { handleSignInError } from '../../../utils/errorHandler';
+import { useAuth } from '../../contexts/authContext/AuthContext';
+import { handleSignInError } from '../../utils/errorHandler';
 
 // create a component
 const SignIn = () => {
