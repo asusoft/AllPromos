@@ -1,4 +1,4 @@
-## Step 1: Start the Metro Server
+## Step 1: Make a clone of this repository
 
 First, you will need to clone the repository to your local machine.
 
