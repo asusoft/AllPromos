@@ -6,8 +6,25 @@ import { loginUser, fetchUserData, signOutUser } from '../../../server/services/
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [authToken, setAuthToken] = useState(AsyncStorage.getItem('authToken'));
+    const [authToken, setAuthToken] = useState(null);
     const [authUser, setAuthUser] = useState(null)
+
+
+    React.useEffect(() => {
+        // Define an async function to fetch the authToken
+        const fetchAuthToken = async () => {
+            try {
+                const authTokenFromStorage = await AsyncStorage.getItem('authToken');
+                setAuthToken(authTokenFromStorage);
+            } catch (error) {
+                // Handle errors if AsyncStorage retrieval fails
+                console.error('Error fetching authToken:', error);
+            }
+        };
+
+        // Call the async function to fetch the authToken
+        fetchAuthToken();
+    }, []);
 
     const signInUser = async (login, password) => {
         const result = await attemptLogin(login, password);

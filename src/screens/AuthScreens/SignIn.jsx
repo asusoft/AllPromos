@@ -21,7 +21,7 @@ const SignIn = () => {
     const [signInError, setSignInError] = React.useState("");
     const [showPassword, setShowPassword] = React.useState(true)
 
-    const { signInUser } = useAuth()
+    const { signInUser, authToken } = useAuth()
 
     const isEnableSignIn = () => {
         return (
@@ -33,7 +33,6 @@ const SignIn = () => {
     const handlSignIn = async () => {
         if (isEnableSignIn()) {
             try {
-                console.log(isEnableSignIn)
                 await signInUser(login, password)
             } catch (error) {
                 handleSignInError(error, setLoginError, setPasswordError)

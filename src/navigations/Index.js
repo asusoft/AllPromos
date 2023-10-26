@@ -20,23 +20,24 @@ const RootNavigator = () => {
     React.useEffect(() => {
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 2000);
-
+        }, 20);
         return () => clearTimeout(timer);
     })
 
-    return (
-        <RootStack.Navigator screenOptions={{ headerShown: false }}>
-            {
-                authToken ?
-                    <RootStack.Screen name="BottomTab" component={BottomTabNavigator} />
-                    :
-                    (
-                        <RootStack.Screen name="Auth" component={SignIn} />
-                    )
-            }
-        </RootStack.Navigator>
-    )
+    if (!loading) {
+        return (
+            <RootStack.Navigator screenOptions={{ headerShown: false }}>
+                {
+                    authToken ?
+                        <RootStack.Screen name="BottomTab" component={BottomTabNavigator} />
+                        :
+                        (
+                            <RootStack.Screen name="Auth" component={SignIn} />
+                        )
+                }
+            </RootStack.Navigator>
+        )
+    }
 }
 
 const BottomTab = createBottomTabNavigator();
