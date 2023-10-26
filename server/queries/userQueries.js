@@ -60,6 +60,8 @@ export const FETCH_USER_QUERY = gql`
         avatar {
           path
         }
+        likesCount
+        viewsCount
       }
 
       ... on BaseError {

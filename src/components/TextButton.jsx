@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { COLORS, SIZES } from "../../assets/constants/theme";
 
 
-const TextButton = ({ icon, text, color, onPress }) => {
+const TextButton = ({ icon, text, color, onPress, textColor = 'white' }) => {
     return (
         <TouchableOpacity onPress={() => onPress()} style={{ backgroundColor: color, ...styles.button }}>
             {
@@ -16,7 +16,7 @@ const TextButton = ({ icon, text, color, onPress }) => {
                     : null
             }
             <Text style={{
-                color: COLORS.white,
+                color: COLORS[textColor],
                 fontSize: SIZES.body
             }}>{text}</Text>
         </TouchableOpacity>

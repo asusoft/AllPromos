@@ -5,6 +5,7 @@ const dots = require('../icons/dots.png');
 const eye = require('../icons/eye.png');
 const gift = require('../icons/gift.png');
 const home = require('../icons/home.png');
+const logout = require('../icons/logout.png');
 const question = require('../icons/question.png');
 const user = require('../icons/user.png');
 const vk = require('../icons/vk.png');
@@ -19,6 +20,7 @@ export default {
     eye,
     gift,
     home,
+    logout,
     question,
     user,
     vk,

@@ -1,66 +1,53 @@
 //import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import { COLORS } from '../../../assets/constants/theme';
+import React from 'react';
+import { View, Text, StyleSheet, Image, SafeAreaView, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import icons from '../../../assets/constants/icons';
+import { COLORS, SIZES } from '../../../assets/constants/theme';
 import { useAuth } from '../../../contexts/authContext/AuthContext';
-import TextButton from '../../components/TextButton';
+import UserStats from './../../components/UserStats';
+import PersonalInfo from './../../components/PersonalInfo';
+
 
 // create a component
 const UserInfoScreen = () => {
     const { authUser, signOut } = useAuth()
 
+    const handleSignOut = () => {
+        Alert.alert('', 'Выйти из аккаунта?', [
+            {
+                text: 'Нет',
+                style: 'cancel'
+            },
+            {
+                text: 'Да',
+                onPress: () => signOut(),
+            },
+        ]);
+    }
+
     return (
-        <View style={styles.container}>
-
-            <Image source={{ uri: authUser.avatar.path }} style={styles.avatar} resizeMode='contain' />
-            <Text style={styles.title}>User Profile</Text>
-            <View style={styles.userInfo}>
-                <Text style={styles.label}>User Name:</Text>
-                <Text style={styles.info}>{authUser.login}</Text>
-            </View>
-            <View style={styles.userInfo}>
-                <Text style={styles.label}>Name:</Text>
-                <Text style={styles.info}>{authUser.name}</Text>
-            </View>
-            <View style={styles.userInfo}>
-                <Text style={styles.label}>Title:</Text>
-                <Text style={styles.info}>{authUser.shortDescription}</Text>
-            </View>
-            <View style={styles.userInfo}>
-                <Text style={styles.label}>City:</Text>
-                <Text style={styles.info}>{authUser.address.city}</Text>
-            </View>
-            <View style={styles.userInfo}>
-                <Text style={styles.label}>Email address:</Text>
-                <Text style={styles.info}>{authUser.email}</Text>
-            </View>
-            <View style={styles.userInfo}>
-                <Text style={styles.label}>Phone:</Text>
-                <Text style={styles.info}>{authUser.phone}</Text>
-            </View>
-            <View style={styles.userInfo}>
-                <Text style={styles.label}>Sex:</Text>
-                <Text style={styles.info}>{authUser.sex}</Text>
-            </View>
-            <View style={styles.userInfo}>
-                <Text style={styles.label}>Date of Birth:</Text>
-                <Text style={styles.info}>{authUser.dateOfBirth.split('T')[0]}</Text>
-            </View>
-            <View style={styles.userInfo}>
-                <Text style={styles.label}>Description:</Text>
-                <Text style={styles.info}>{authUser.description}</Text>
-            </View>
-            <View style={styles.userInfo}>
-                <Text style={styles.label}>Subscribers:</Text>
-                <Text style={styles.info}>{authUser.subscribersCount}</Text>
-            </View>
-            <View style={styles.userInfo}>
-                <Text style={styles.label}>Website:</Text>
-                <Text style={styles.info}>{authUser.website}</Text>
-            </View>
-            <TextButton text="Log out" onPress={() => signOut()} color={COLORS.primary} />
-
-        </View>
+        <SafeAreaView style={styles.container}>
+            <ScrollView>
+                <View style={styles.section}>
+                    <Image source={{ uri: authUser.avatar.path }} style={styles.avatar} resizeMode='contain' />
+                    <View style={{ gap: 8 }}>
+                        <Text style={styles.name}>{authUser.name}</Text>
+                        <Text style={styles.title}>@{authUser.login}</Text>
+                        <Text style={styles.info}>{authUser.shortDescription}</Text>
+                        <Text style={styles.info}>{authUser.address.city}</Text>
+                    </View>
+                    <TouchableOpacity onPress={() => handleSignOut()} style={{ marginLeft: 'auto' }}>
+                        <Image source={icons.logout} style={{ height: 30, width: 30 }} resizeMode='contain' />
+                    </TouchableOpacity>
+                </View>
+                <UserStats user={authUser} />
+                <View style={{ alignItems: 'center', gap: 12, }}>
+                    <Text style={{ fontSize: 14, fontWeight: "600" }}>BIO</Text>
+                    <Text style={styles.info}>{authUser.description}</Text>
+                </View>
+                <PersonalInfo user={authUser} />
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 
@@ -68,33 +55,30 @@ const UserInfoScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
+        padding: SIZES.padding,
     },
     avatar: {
-        height: 150,
-        width: 150,
-        borderRadius: 75,
-        marginBottom: 20,
+        height: 110,
+        width: 110,
+        borderRadius: 25,
     },
-    title: {
+    name: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 20,
+        color: COLORS.dark
     },
-    userInfo: {
+    title: {
+        color: COLORS.dark
+    },
+    section: {
         flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-    },
-    label: {
-        flex: 1,
-        fontWeight: 'bold',
-        marginRight: 10,
+        gap: 20,
+        margin: SIZES.padding
     },
     info: {
-        flex: 2,
+        fontWeight: 'bold',
+        marginRight: 10,
+        color: COLORS.dark,
     },
 });
 
