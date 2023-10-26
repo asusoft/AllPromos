@@ -18,14 +18,27 @@ const SignIn = () => {
     const [loginError, setLoginError] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [passwordError, setPasswordError] = React.useState("");
+    const [signInError, setSignInError] = React.useState("");
 
     const { signInUser, authUser } = useAuth()
 
+    const isEnableSignIn = () => {
+        return (
+            login.trim() !== "" &&
+            password.trim() !== ""
+        );
+    };
+
     const handlSignIn = async () => {
-        try {
-            await signInUser(login, password)
-        } catch (error) {
-            handleSignInError(error, setLoginError, setPasswordError)
+        if (isEnableSignIn()) {
+            try {
+                console.log(isEnableSignIn)
+                await signInUser(login, password)
+            } catch (error) {
+                handleSignInError(error, setLoginError, setPasswordError)
+            }
+        } else {
+            setSignInError("Поля не могут быть пустыми")
         }
     }
 
@@ -37,6 +50,7 @@ const SignIn = () => {
                     onChange={value => {
                         setLoginError('');
                         setPasswordError("");
+                        setSignInError("");
                         setLogin(value);
                     }}
                     errorMsg={loginError}
@@ -47,6 +61,7 @@ const SignIn = () => {
                     onChange={value => {
                         setLoginError('');
                         setPasswordError("");
+                        setSignInError("");
                         setPassword(value);
                     }}
                     appendComponent={
@@ -63,6 +78,11 @@ const SignIn = () => {
                     }
                     errorMsg={passwordError}
                 />
+                {signInError && (
+                    <View style={{ marginTop: 5 }}>
+                        <Text style={{ color: COLORS.red, marginEnd: 10 }}>{signInError}</Text>
+                    </View>
+                )}
             </View>
         );
     }
