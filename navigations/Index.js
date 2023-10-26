@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useAuth } from "../contexts/authContext/AuthContext";
-import DrawScreen from "../src/screens/DrawScreen/DrawScreen";
-import UserInfoScreen from "../src/screens/UserInfoScreen/UserInfo";
-import SignIn from "../src/screens/AuthScreens/SignIn";
 import { COLORS, SIZES } from "../assets/constants/theme";
 import { Image } from "react-native";
 import icons from "../assets/constants/icons";
+import DrawScreen from "../src/screens/DrawScreen/DrawScreen";
+import UserInfoScreen from "../src/screens/UserInfoScreen/UserInfo";
+import SignIn from "../src/screens/AuthScreens/SignIn";
+import TempScreen from "../src/screens/TempScreen";
 
 const RootStack = createNativeStackNavigator();
 
@@ -35,6 +36,7 @@ const BottomTab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
     return (
         <BottomTab.Navigator
+            initialRouteName="Draw"
             screenOptions={{
                 headerShown: false,
                 tabBarShowLabel: false,
@@ -52,7 +54,7 @@ const BottomTabNavigator = () => {
         >
             <BottomTab.Screen
                 name="Home"
-                component={DrawScreen}
+                component={TempScreen}
                 options={{
                     tabBarIcon: () => (
                         <Image source={icons.home} resizeMode="contain" style={{ height: 30, width: 30 }} />
@@ -70,7 +72,7 @@ const BottomTabNavigator = () => {
             />
             <BottomTab.Screen
                 name="Bookmark"
-                component={UserInfoScreen}
+                component={TempScreen}
                 options={{
                     tabBarIcon: () => (
                         <Image source={icons.bookmark} resizeMode="contain" style={{ height: 30, width: 30 }} />

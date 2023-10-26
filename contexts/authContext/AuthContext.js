@@ -10,19 +10,30 @@ export const AuthProvider = ({ children }) => {
     const [authUser, setAuthUser] = useState(null)
 
     const signInUser = async (login, password) => {
-        try {
-            const result = await loginUser(login, password);
-            if (result.__typename === 'TokenPair') {
-                const token = result.accessToken;
-                setAuthToken(token);
-                await AsyncStorage.setItem('authToken', token);
-            } else {
-                console.log("Error:", result.status);
-            }
-        } catch (error) {
-            console.error("Login error:", error);
+        const result = await attemptLogin(login, password);
+
+        if (isSuccessfulLogin(result)) {
+            await saveAuthToken(result.accessToken);
+        } else {
+            throw new Error(result.status);
         }
     };
+
+    const attemptLogin = async (login, password) => {
+        try {
+            return await loginUser(login, password);
+        } catch (error) {
+            throw new Error('Failed to login user:', error);
+        }
+    };
+
+    const isSuccessfulLogin = (result) => result.__typename === 'TokenPair';
+
+    const saveAuthToken = async (token) => {
+        setAuthToken(token);
+        await AsyncStorage.setItem('authToken', token);
+    };
+
 
     const fetchAndHandleUserData = async () => {
         try {

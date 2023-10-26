@@ -1,6 +1,6 @@
 //import liraries
 import React from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { View, TextInput, StyleSheet, Text } from 'react-native';
 import { COLORS } from '../../assets/constants/theme';
 
 const Forminput = ({
@@ -8,27 +8,35 @@ const Forminput = ({
     secureTextEntry,
     keyboardType,
     autoComplete,
-    autoCapitalize,
     value,
     onChange,
     appendComponent,
+    errorMsg = '',
 }) => {
     return (
-        <View style={styles.inputContainer}>
-            <TextInput style={{
-                flex: 1
-            }}
-                placeholder={placeholder}
-                placeholderTextColor={COLORS.light}
-                secureTextEntry={secureTextEntry}
-                keyboardType={keyboardType}
-                autoComplete={autoComplete}
-                autoCapitalize={false}
-                onChangeText={text => onChange(text)}
-                value={value}
-            />
-            {appendComponent}
-        </View>
+        <>
+            <View style={styles.inputContainer}>
+                <TextInput style={{
+                    flex: 1
+                }}
+                    placeholder={placeholder}
+                    placeholderTextColor={COLORS.light}
+                    secureTextEntry={secureTextEntry}
+                    keyboardType={keyboardType}
+                    autoComplete={autoComplete}
+                    autoCapitalize='none'
+                    onChangeText={text => onChange(text)}
+                    value={value}
+                />
+                {appendComponent}
+            </View>
+            {
+                errorMsg && (
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 5 }}>
+                        <Text style={{ color: COLORS.red, marginEnd: 10 }}>{errorMsg}</Text>
+                    </View>)
+            }
+        </>
     );
 }
 

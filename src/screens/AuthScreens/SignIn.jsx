@@ -9,12 +9,15 @@ import TextButton from './../../components/TextButton';
 import images from '../../../assets/constants/images';
 
 import { useAuth } from '../../../contexts/authContext/AuthContext';
+import { handleSignInError } from '../../../utils/errorHandler';
 
 // create a component
 const SignIn = () => {
 
     const [login, setLogin] = React.useState("");
+    const [loginError, setLoginError] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [passwordError, setPasswordError] = React.useState("");
 
     const { signInUser, authUser } = useAuth()
 
@@ -22,7 +25,7 @@ const SignIn = () => {
         try {
             await signInUser(login, password)
         } catch (error) {
-            console.log(error)
+            handleSignInError(error, setLoginError, setPasswordError)
         }
     }
 
@@ -31,12 +34,21 @@ const SignIn = () => {
             <View style={{ marginVertical: 20 }}>
                 <Forminput
                     placeholder="Логин или телефон"
-                    onChange={setLogin}
+                    onChange={value => {
+                        setLoginError('');
+                        setPasswordError("");
+                        setLogin(value);
+                    }}
+                    errorMsg={loginError}
                 />
                 <Forminput
                     placeholder="Пароль"
                     secureTextEntry={true}
-                    onChange={setPassword}
+                    onChange={value => {
+                        setLoginError('');
+                        setPasswordError("");
+                        setPassword(value);
+                    }}
                     appendComponent={
                         <TouchableOpacity
                             style={styles.appendComponentPassword}>
@@ -49,6 +61,7 @@ const SignIn = () => {
                             />
                         </TouchableOpacity>
                     }
+                    errorMsg={passwordError}
                 />
             </View>
         );
