@@ -1,27 +1,65 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { COLORS } from '../../../assets/constants/theme';
 import { useAuth } from '../../../contexts/authContext/AuthContext';
+import TextButton from '../../components/TextButton';
 
 // create a component
 const UserInfoScreen = () => {
-    const { authUser } = useAuth()
+    const { authUser, signOut } = useAuth()
 
     return (
         <View style={styles.container}>
-            <Image source={{ uri: authUser.avatar.path }} style={{ height: 150, width: 150 }} resizeMode='contain' />
-            <Text>User Name: {authUser.login}</Text>
-            <Text>Name: {authUser.name}</Text>
-            <Text>Title: {authUser.shortDescription}</Text>
-            <Text>City: {authUser.address.city}</Text>
-            <Text>Email adress: {authUser.email}</Text>
-            <Text>Phone: {authUser.phone}</Text>
-            <Text>Sex: {authUser.sex}</Text>
-            <Text>Date of Birt: {authUser.dateOfBirth.split('T')[0]}</Text>
-            <Text>Description: {authUser.description}</Text>
-            <Text>Subscriber: {authUser.subscribersCount}</Text>
-            <Text>Website: {authUser.website}</Text>
+
+            <Image source={{ uri: authUser.avatar.path }} style={styles.avatar} resizeMode='contain' />
+            <Text style={styles.title}>User Profile</Text>
+            <View style={styles.userInfo}>
+                <Text style={styles.label}>User Name:</Text>
+                <Text style={styles.info}>{authUser.login}</Text>
+            </View>
+            <View style={styles.userInfo}>
+                <Text style={styles.label}>Name:</Text>
+                <Text style={styles.info}>{authUser.name}</Text>
+            </View>
+            <View style={styles.userInfo}>
+                <Text style={styles.label}>Title:</Text>
+                <Text style={styles.info}>{authUser.shortDescription}</Text>
+            </View>
+            <View style={styles.userInfo}>
+                <Text style={styles.label}>City:</Text>
+                <Text style={styles.info}>{authUser.address.city}</Text>
+            </View>
+            <View style={styles.userInfo}>
+                <Text style={styles.label}>Email address:</Text>
+                <Text style={styles.info}>{authUser.email}</Text>
+            </View>
+            <View style={styles.userInfo}>
+                <Text style={styles.label}>Phone:</Text>
+                <Text style={styles.info}>{authUser.phone}</Text>
+            </View>
+            <View style={styles.userInfo}>
+                <Text style={styles.label}>Sex:</Text>
+                <Text style={styles.info}>{authUser.sex}</Text>
+            </View>
+            <View style={styles.userInfo}>
+                <Text style={styles.label}>Date of Birth:</Text>
+                <Text style={styles.info}>{authUser.dateOfBirth.split('T')[0]}</Text>
+            </View>
+            <View style={styles.userInfo}>
+                <Text style={styles.label}>Description:</Text>
+                <Text style={styles.info}>{authUser.description}</Text>
+            </View>
+            <View style={styles.userInfo}>
+                <Text style={styles.label}>Subscribers:</Text>
+                <Text style={styles.info}>{authUser.subscribersCount}</Text>
+            </View>
+            <View style={styles.userInfo}>
+                <Text style={styles.label}>Website:</Text>
+                <Text style={styles.info}>{authUser.website}</Text>
+            </View>
+            <TextButton text="Log out" onPress={() => signOut()} color={COLORS.primary} />
+
         </View>
     );
 };
@@ -30,9 +68,33 @@ const UserInfoScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.background,
+        justifyContent: 'center',
+        padding: 20,
+    },
+    avatar: {
+        height: 150,
+        width: 150,
+        borderRadius: 75,
+        marginBottom: 20,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+    },
+    userInfo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    label: {
+        flex: 1,
+        fontWeight: 'bold',
+        marginRight: 10,
+    },
+    info: {
+        flex: 2,
     },
 });
 

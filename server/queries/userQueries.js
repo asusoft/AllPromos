@@ -6,11 +6,34 @@ export const LOGIN_QUERY = gql`
       __typename
       ... on TokenPair {
         accessToken
+        refreshToken
       }
       ... on ErrorWithFields {
         status
         fields
       }
+    }
+  }
+`;
+
+export const REFRESH_ACCESS_TOKEN = gql`
+  query RefreshAccessToken($refreshToken: String!) {
+    refreshAccessToken(refreshToken: $refreshToken) {
+      ... on AccessToken {
+        __typename
+        accessToken
+      }
+      ... on BaseError {
+        __typename
+      }
+    }
+  }
+`;
+
+export const DELETE_REFRESH_TOKEN = gql`
+  query DeleteRefreshToken($refreshToken: String!) {
+    deleteRefreshToken(refreshToken: $refreshToken) {
+      status
     }
   }
 `;

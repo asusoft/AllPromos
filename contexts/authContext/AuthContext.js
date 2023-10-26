@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { loginUser, fetchUserData } from '../../server/services/authService';
+import { loginUser, fetchUserData, signOutUser } from '../../server/services/authService';
 
 const AuthContext = createContext();
 
@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
         const result = await attemptLogin(login, password);
 
         if (isSuccessfulLogin(result)) {
-            await saveAuthToken(result.accessToken);
+            await saveAuthTokens(result.accessToken, result.refreshToken);
         } else {
             throw new Error(result.status);
         }
@@ -29,11 +29,17 @@ export const AuthProvider = ({ children }) => {
 
     const isSuccessfulLogin = (result) => result.__typename === 'TokenPair';
 
-    const saveAuthToken = async (token) => {
-        setAuthToken(token);
-        await AsyncStorage.setItem('authToken', token);
+    const saveAuthTokens = async (accessToken, refreshToken) => {
+        setAuthToken(accessToken);
+        await AsyncStorage.setItem('authToken', accessToken);
+        await AsyncStorage.setItem('refreshToken', refreshToken);
     };
 
+    const signOut = async () => {
+        await signOutUser();
+        setAuthToken(null)
+        setAuthUser(null)
+    }
 
     const fetchAndHandleUserData = async () => {
         try {
@@ -60,7 +66,7 @@ export const AuthProvider = ({ children }) => {
     }, [authToken])
 
     return (
-        <AuthContext.Provider value={{ authToken, setAuthToken, signInUser, authUser }}>
+        <AuthContext.Provider value={{ authToken, setAuthToken, signInUser, authUser, signOut }}>
             {children}
         </AuthContext.Provider>
     );
