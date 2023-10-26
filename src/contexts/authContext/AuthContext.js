@@ -6,7 +6,7 @@ import { loginUser, fetchUserData, signOutUser } from '../../../server/services/
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [authToken, setAuthToken] = useState(null);
+    const [authToken, setAuthToken] = useState(AsyncStorage.getItem('authToken'));
     const [authUser, setAuthUser] = useState(null)
 
     const signInUser = async (login, password) => {

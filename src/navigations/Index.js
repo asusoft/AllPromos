@@ -2,29 +2,38 @@ import React, { useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useAuth } from "../contexts/authContext/AuthContext";
-import { COLORS } from "../../assets/constants/theme";
 import { Image } from "react-native";
 import icons from "../../assets/constants/icons";
 import DrawScreen from "../screens/DrawScreen/DrawScreen";
 import UserInfoScreen from "../screens/UserInfoScreen/UserInfo";
 import SignIn from "../screens/AuthScreens/SignIn";
 import TempScreen from "../screens/TempScreen";
+import { COLORS, SIZES } from "../../assets/constants/theme";
 
 const RootStack = createNativeStackNavigator();
 
 const RootNavigator = () => {
-    const { authUser } = useAuth();
+    const { authToken } = useAuth();
+
+    const [loading, setLoading] = useState(true)
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    })
 
     return (
         <RootStack.Navigator screenOptions={{ headerShown: false }}>
             {
-                authUser ?
+                authToken ?
                     <RootStack.Screen name="BottomTab" component={BottomTabNavigator} />
                     :
                     (
                         <RootStack.Screen name="Auth" component={SignIn} />
                     )
-
             }
         </RootStack.Navigator>
     )
