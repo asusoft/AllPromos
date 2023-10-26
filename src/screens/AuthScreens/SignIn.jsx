@@ -19,8 +19,9 @@ const SignIn = () => {
     const [password, setPassword] = React.useState("");
     const [passwordError, setPasswordError] = React.useState("");
     const [signInError, setSignInError] = React.useState("");
+    const [showPassword, setShowPassword] = React.useState(true)
 
-    const { signInUser, authUser } = useAuth()
+    const { signInUser } = useAuth()
 
     const isEnableSignIn = () => {
         return (
@@ -57,7 +58,7 @@ const SignIn = () => {
                 />
                 <Forminput
                     placeholder="Пароль"
-                    secureTextEntry={true}
+                    secureTextEntry={showPassword}
                     onChange={value => {
                         setLoginError('');
                         setPasswordError("");
@@ -66,7 +67,9 @@ const SignIn = () => {
                     }}
                     appendComponent={
                         <TouchableOpacity
-                            style={styles.appendComponentPassword}>
+                            style={styles.appendComponentPassword}
+                            onPress={() => setShowPassword(!showPassword)}
+                        >
                             <Image
                                 source={icons.eye}
                                 style={{
