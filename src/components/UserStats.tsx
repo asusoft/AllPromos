@@ -3,19 +3,47 @@ import { View, Text, StyleSheet } from 'react-native';
 import { COLORS, SIZES } from "../../assets/constants/theme";
 
 
-const UserStats = ({ user }) => {
+type User = {
+    __typename: 'User';
+    id: string;
+    login: string;
+    email: string;
+    dateOfBirth: string;
+    description: string;
+    name: string;
+    phone: string;
+    sex: string;
+    address: {
+        city: string;
+    };
+    subscribersCount: number;
+    website: string;
+    shortDescription: string;
+    avatar: {
+        path: string;
+    };
+    likesCount: number;
+    viewsCount: number;
+};
+
+type UserProps = {
+    user: User | null;
+};
+
+
+const UserStats:React.FC<UserProps> = ({ user }) => {
     const userStats = [
         {
             label: "Like",
-            value: user.likesCount
+            value: user?.likesCount
         },
         {
             label: "Subscribers",
-            value: user.subscribersCount
+            value: user?.subscribersCount
         },
         {
             label: "Views",
-            value: user.viewsCount
+            value: user?.viewsCount
         }
     ]
 
@@ -45,12 +73,12 @@ const styles = StyleSheet.create({
     digit: {
         fontSize: 20,
         fontWeight: '600',
-        color: COLORS.primary
+        color: COLORS.PRIMARY
     },
     section: {
         flexDirection: 'row',
         gap: 20,
-        margin: SIZES.padding
+        margin: SIZES.PADDING
     },
     stat: {
         width: 100,
@@ -62,8 +90,8 @@ const styles = StyleSheet.create({
         marginTop: 10,
         borderTopWidth: 1,
         borderBottomWidth: 1,
-        borderColor: COLORS.grey,
-        paddingVertical: SIZES.base
+        borderColor: COLORS.GREY,
+        paddingVertical: SIZES.BASE
     }
 });
 
