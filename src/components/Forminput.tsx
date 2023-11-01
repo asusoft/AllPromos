@@ -29,7 +29,7 @@ const Forminput:React.FC<FormInputProps> = ({
                     flex: 1
                 }}
                     placeholder={placeholder}
-                    placeholderTextColor={COLORS.light}
+                    placeholderTextColor={COLORS.LIGHT}
                     secureTextEntry={secureTextEntry}
                     autoComplete={autoComplete}
                     autoCapitalize={autoCapitalize}
@@ -40,7 +40,7 @@ const Forminput:React.FC<FormInputProps> = ({
             {
                 errorMsg && (
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 5 }}>
-                        <Text style={{ color: COLORS.red, marginEnd: 10 }}>{errorMsg}</Text>
+                        <Text style={{ color: COLORS.RED, marginEnd: 10 }}>{errorMsg}</Text>
                     </View>)
             }
         </>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         height: 45,
         borderRadius: 8,
         padding: 10,
-        backgroundColor: COLORS.lightGray
+        backgroundColor: COLORS.LIGHT_GRAY
     },
 });
 

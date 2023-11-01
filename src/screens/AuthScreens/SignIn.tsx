@@ -94,9 +94,9 @@ const SignIn = () => {
                 title="Авторизация"
                 leftIcon={icons.back}
                 titleColor="black"
-                logo={images.logo_black}
-                subtitle="Войти"
-            >
+                logoSource={images.logo_black}
+                subtitle="Войти" 
+                >
                 {RenderForm()}
                 <TextButton text="Войти" color={COLORS.PRIMARY} onPress={handlSignIn} />
                 <Text style={styles.recover}>Не помню пароль</Text>

@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native';
 import Header from './Header';
 import { COLORS, SIZES } from '../../assets/constants/theme';
 
-const Layout = ({
+
+export type ColorKey = keyof typeof COLORS;
+
+type LayoutProps = {
+    title: string,
+    leftIcon: any,
+    titleColor: string,
+    subtitle: string,
+    subtitleColor?: ColorKey,
+    subtitleIcon?: any,
+    logoSource: any ,
+    logoSize?: string,
+    children: ReactNode,
+}
+
+const Layout:React.FC<LayoutProps> = ({
     title,
     leftIcon,
     titleColor,
     subtitle,
-    subtitleColor = "dark",
+    subtitleColor = "DARK",
     subtitleIcon,
-    logo,
+    logoSource,
     logoSize = "small",
     children,
 }) => {
@@ -20,13 +35,13 @@ const Layout = ({
     return (
         <SafeAreaView style={styles.container}>
             <Header title={title} icon={leftIcon} color={titleColor} />
-            <View style={{ alignItems: 'center', marginTop: SIZES.base }}>
+            <View style={{ alignItems: 'center', marginTop: SIZES.BASE }}>
                 <Image
-                    source={logo}
+                    source={logoSource}
                     resizeMode="contain"
                     style={logoStyles}
                 />
-                <View style={{ flexDirection: 'row', marginTop: SIZES.base, gap: 15, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ flexDirection: 'row', marginTop: SIZES.BASE, gap: 15, alignItems: 'center', justifyContent: 'center' }}>
                     <Text
                         style={{
                             textAlign: 'center',
@@ -56,12 +71,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     logoSmall: {
-        height: 100, // Small logo size
-        width: 100,  // Small logo size
+        height: 100, 
+        width: 100,  
     },
     logoBig: {
-        height: 130, // Big logo size
-        width: 130,  // Big logo size
+        height: 130, 
+        width: 130,  
     },
 });
 
