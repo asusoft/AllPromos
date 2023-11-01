@@ -2,7 +2,20 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { COLORS } from "../../assets/constants/theme";
 
-const Items = ({ items }) => {
+type Item = {
+    id: number;
+    image: {
+        uri: string;
+    };
+    quantity: number;
+};
+
+type ItemsProps = {
+    items: Item[];
+};
+
+
+const Items: React.FC<ItemsProps> = ({ items }) => {
     return (
         <View style={{
             flexDirection: 'row',
@@ -13,7 +26,7 @@ const Items = ({ items }) => {
                     <View key={item.id} style={styles.itemCard}>
                         <View style={styles.quantity}>
                             <Text style={{
-                                color: COLORS.white
+                                color: COLORS.WHITE
                             }}>{item.quantity}</Text>
                         </View>
                         <Image source={item.image} resizeMode='contain' style={{
@@ -32,7 +45,7 @@ const styles = StyleSheet.create({
     itemCard: {
         height: 94,
         width: 94,
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.WHITE,
         borderRadius: 12,
         alignItems: 'center',
         justifyContent: 'center'
@@ -44,7 +57,7 @@ const styles = StyleSheet.create({
         height: 20,
         width: 20,
         borderRadius: 10,
-        backgroundColor: COLORS.primary,
+        backgroundColor: COLORS.PRIMARY,
         alignItems: 'center',
         justifyContent: 'center'
     }

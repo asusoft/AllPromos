@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 import Layout from '../../components/Layout';
-import Timer from './../../components/Timer';
-import Items from './../../components/Items';
+import Timer from '../../components/Timer';
+import Items from '../../components/Items';
 import images from '../../../assets/constants/images';
 import icons from '../../../assets/constants/icons';
 
@@ -13,7 +13,7 @@ import TextButton from '../../components/TextButton';
 // create a component
 const DrawScreen = () => {
 
-    const [timer, setTimer] = React.useState(70);
+    const [timer, setTimer] = React.useState<number>(70);
 
     React.useEffect(() => {
         const countdown = setInterval(() => {
@@ -29,30 +29,26 @@ const DrawScreen = () => {
         return () => clearInterval(countdown);
     }, []);
 
-    const formattedTime = `${String(Math.floor(timer / 60)).padStart(2, '0')}:${String(
-        (timer % 60) < 10 ? '0' + (timer % 60) : timer % 60
-    ).padStart(2, '0')}`;
-
     return (
         <ImageBackground style={styles.container} source={images.background_image}>
             <Layout
                 title="Розыгрыш"
                 leftIcon={icons.Arrow_left_long}
-                titleColor="white"
-                logo={images.logo_white}
+                titleColor="WHITE"
+                logoSource={images.logo_white}
                 logoSize="big"
                 subtitle="До начала розыгрыша"
-                subtitleColor="white"
+                subtitleColor="WHITE"
                 subtitleIcon={icons.question}
             >
                 <View style={{ marginVertical: 20, alignItems: 'center' }}>
                     <Timer timer={timer} />
-                    <View style={{ marginTop: SIZES.padding, gap: 15, alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ marginTop: SIZES.PADDING, gap: 15, alignItems: 'center', justifyContent: 'center' }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text
                                 style={{
                                     textAlign: 'center',
-                                    color: COLORS.white,
+                                    color: COLORS.WHITE,
                                     fontSize: 14
                                 }}>
                                 Разыгрываем сегодня
@@ -67,7 +63,7 @@ const DrawScreen = () => {
                     </View>
                 </View>
                 <View style={{ marginTop: "auto", marginBottom: 'auto' }}>
-                    <TextButton text="Участвовать" color={COLORS.primary} />
+                    <TextButton text="Участвовать" color="PRIMARY" onPress={() => {}} />
                 </View>
             </Layout>
         </ImageBackground>
@@ -78,7 +74,7 @@ const DrawScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: SIZES.base
+        padding: SIZES.BASE
     }
 });
 
