@@ -3,7 +3,23 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { COLORS, SIZES } from "../../assets/constants/theme";
 
 
-const TextButton = ({ icon, text, color, onPress, textColor = 'white' }) => {
+export type ColorKey = keyof typeof COLORS;
+
+type TextButtonProps = {
+    icon?: any, 
+    text: string, 
+    color: ColorKey, 
+    onPress: () => void, 
+    textColor?: ColorKey
+}
+
+const TextButton:React.FC<TextButtonProps> = ({ 
+    icon, 
+    text, 
+    color, 
+    onPress, 
+    textColor = 'WHITE' 
+}) => {
     return (
         <TouchableOpacity onPress={() => onPress()} style={{ backgroundColor: color, ...styles.button }}>
             {
@@ -17,7 +33,7 @@ const TextButton = ({ icon, text, color, onPress, textColor = 'white' }) => {
             }
             <Text style={{
                 color: COLORS[textColor],
-                fontSize: SIZES.body
+                fontSize: SIZES.BODY
             }}>{text}</Text>
         </TouchableOpacity>
     );
@@ -27,7 +43,7 @@ const styles = StyleSheet.create({
     button: {
         marginTop: 10,
         height: 45,
-        borderRadius: SIZES.radius,
+        borderRadius: SIZES.RADIUS,
         alignItems: "center",
         justifyContent: 'center',
         flexDirection: 'row',
@@ -36,8 +52,7 @@ const styles = StyleSheet.create({
     icon: {
         height: 20,
         width: 20,
-        tintColor: COLORS.light,
-        tintColor: COLORS.white
+        tintColor: COLORS.WHITE
     }
 });
 

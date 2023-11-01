@@ -98,11 +98,11 @@ const SignIn = () => {
                 subtitle="Войти" 
                 >
                 {RenderForm()}
-                <TextButton text="Войти" color={COLORS.PRIMARY} onPress={handlSignIn} />
+                <TextButton text="Войти" color={'PRIMARY'} onPress={handlSignIn} />
                 <Text style={styles.recover}>Не помню пароль</Text>
                 <View style={{ marginTop: "auto" }}>
-                    <TextButton icon={icons.vk} text="Войти через Вконтакте" color={COLORS.BLUE} />
-                    <TextButton icon={icons.yandex} text="Войти через Яндекс" color={COLORS.ORANGE} />
+                    <TextButton icon={icons.vk} text="Войти через Вконтакте" color={'BLUE'} onPress={() => {}}/>
+                    <TextButton icon={icons.yandex} text="Войти через Яндекс" color={'ORANGE'} onPress={() => {}}/>
                 </View>
                 <Text style={styles.register}>Регистрация</Text>
             </Layout>
