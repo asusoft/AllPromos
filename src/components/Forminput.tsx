@@ -1,25 +1,24 @@
 //import liraries
 import React from 'react';
-import { View, TextInput, StyleSheet, Text } from 'react-native';
+import { View, TextInput, StyleSheet, Text, TextInputProps } from 'react-native';
 import { COLORS } from '../../assets/constants/theme';
 
 
 
-type FormInputProps =  {
+type FormInputProps =  TextInputProps & {
     placeholder: string,
     secureTextEntry?: boolean,
     appendComponent?: any;
     errorMsg: string;
-    onChange: (text: string) => void;
+    onTextChange: (text: string) => void;
   };
 
-const Forminput:React.FunctionComponent<FormInputProps> = ({
+const Forminput:React.FC<FormInputProps> = ({
     placeholder,
     secureTextEntry,
     autoComplete = 'off',
     autoCapitalize = 'none',
-    value,
-    onChange,
+    onTextChange,
     appendComponent,
     errorMsg = '',
 }) => {
@@ -34,8 +33,7 @@ const Forminput:React.FunctionComponent<FormInputProps> = ({
                     secureTextEntry={secureTextEntry}
                     autoComplete={autoComplete}
                     autoCapitalize={autoCapitalize}
-                    onChangeText={text => onChange(text)}
-                    value={value}
+                    onChangeText={text => onTextChange(text)}
                 />
                 {appendComponent}
             </View>

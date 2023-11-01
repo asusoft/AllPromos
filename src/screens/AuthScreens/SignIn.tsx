@@ -14,7 +14,7 @@ import { handleSignInError } from '../../utils/errorHandler';
 // create a component
 const SignIn = () => {
 
-    const [login, setLogin] = React.useState("");
+    const [login, setLogin] = React.useState('');
     const [loginError, setLoginError] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [passwordError, setPasswordError] = React.useState("");
@@ -47,7 +47,7 @@ const SignIn = () => {
             <View style={{ marginVertical: 20 }}>
                 <Forminput
                     placeholder="Логин или телефон"
-                    onChange={value => {
+                    onTextChange={(value: string) => {
                         setLoginError('');
                         setPasswordError("");
                         setSignInError("");
@@ -58,7 +58,7 @@ const SignIn = () => {
                 <Forminput
                     placeholder="Пароль"
                     secureTextEntry={showPassword}
-                    onChange={value => {
+                    onTextChange={value => {
                         setLoginError('');
                         setPasswordError("");
                         setSignInError("");
@@ -72,8 +72,7 @@ const SignIn = () => {
                             <Image
                                 source={icons.eye}
                                 style={{
-                                    height: 20, width: 20, tintColor: COLORS.light,
-                                    tintColor: COLORS.light
+                                    height: 20, width: 20, tintColor: COLORS.LIGHT,
                                 }}
                             />
                         </TouchableOpacity>
@@ -82,7 +81,7 @@ const SignIn = () => {
                 />
                 {signInError && (
                     <View style={{ marginTop: 5 }}>
-                        <Text style={{ color: COLORS.red, marginEnd: 10 }}>{signInError}</Text>
+                        <Text style={{ color: COLORS.RED, marginEnd: 10 }}>{signInError}</Text>
                     </View>
                 )}
             </View>
@@ -99,11 +98,11 @@ const SignIn = () => {
                 subtitle="Войти"
             >
                 {RenderForm()}
-                <TextButton text="Войти" color={COLORS.primary} onPress={handlSignIn} />
+                <TextButton text="Войти" color={COLORS.PRIMARY} onPress={handlSignIn} />
                 <Text style={styles.recover}>Не помню пароль</Text>
                 <View style={{ marginTop: "auto" }}>
-                    <TextButton icon={icons.vk} text="Войти через Вконтакте" color={COLORS.blue} />
-                    <TextButton icon={icons.yandex} text="Войти через Яндекс" color={COLORS.orange} />
+                    <TextButton icon={icons.vk} text="Войти через Вконтакте" color={COLORS.BLUE} />
+                    <TextButton icon={icons.yandex} text="Войти через Яндекс" color={COLORS.ORANGE} />
                 </View>
                 <Text style={styles.register}>Регистрация</Text>
             </Layout>
@@ -115,7 +114,7 @@ const SignIn = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: SIZES.base
+        paddingHorizontal: SIZES.BASE
     },
     appendComponentPassword: {
         alignItems: 'center',
@@ -125,14 +124,14 @@ const styles = StyleSheet.create({
         marginBottom: 'auto',
         alignSelf: 'center',
         marginTop: 'auto',
-        color: COLORS.black,
-        fontSize: SIZES.body
+        color: COLORS.BLACK,
+        fontSize: SIZES.BODY
     },
     recover: {
         alignSelf: 'center',
         marginTop: 15,
-        color: COLORS.light,
-        fontSize: SIZES.font
+        color: COLORS.LIGHT,
+        fontSize: SIZES.FONT
     }
 });
 
