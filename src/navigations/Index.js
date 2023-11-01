@@ -52,7 +52,7 @@ const BottomTabNavigator = () => {
                     {
                         "display": "flex",
                         "borderRadius": 12,
-                        "backgroundColor": COLORS.background,
+                        "backgroundColor": COLORS.BACKGROUND,
                         position: 'absolute'
                     },
                     null

@@ -35,7 +35,7 @@ const SignIn = () => {
             try {
                 await signInUser(login, password)
             } catch (error) {
-                handleSignInError(error, setLoginError, setPasswordError)
+                handleSignInError(error, setLoginError, setPasswordError);
             }
         } else {
             setSignInError("Поля не могут быть пустыми")
@@ -93,16 +93,16 @@ const SignIn = () => {
             <Layout
                 title="Авторизация"
                 leftIcon={icons.back}
-                titleColor="black"
+                titleColor="BLACK"
                 logoSource={images.logo_black}
-                subtitle="Войти" 
-                >
+                subtitle="Войти"
+            >
                 {RenderForm()}
                 <TextButton text="Войти" color={'PRIMARY'} onPress={handlSignIn} />
                 <Text style={styles.recover}>Не помню пароль</Text>
                 <View style={{ marginTop: "auto" }}>
-                    <TextButton icon={icons.vk} text="Войти через Вконтакте" color={'BLUE'} onPress={() => {}}/>
-                    <TextButton icon={icons.yandex} text="Войти через Яндекс" color={'ORANGE'} onPress={() => {}}/>
+                    <TextButton icon={icons.vk} text="Войти через Вконтакте" color={'BLUE'} onPress={() => { }} />
+                    <TextButton icon={icons.yandex} text="Войти через Яндекс" color={'ORANGE'} onPress={() => { }} />
                 </View>
                 <Text style={styles.register}>Регистрация</Text>
             </Layout>

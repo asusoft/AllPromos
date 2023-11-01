@@ -9,7 +9,7 @@ export type ColorKey = keyof typeof COLORS;
 type LayoutProps = {
     title: string,
     leftIcon: any,
-    titleColor: string,
+    titleColor: ColorKey,
     subtitle: string,
     subtitleColor?: ColorKey,
     subtitleIcon?: any,
