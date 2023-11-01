@@ -5,7 +5,7 @@ import Layout from '../../components/Layout';
 import { COLORS, SIZES } from '../../../assets/constants/theme';
 import icons from '../../../assets/constants/icons';
 import Forminput from '../../components/Forminput';
-import TextButton from './../../components/TextButton';
+import TextButton from '../../components/TextButton';
 import images from '../../../assets/constants/images';
 
 import { useAuth } from '../../contexts/authContext/AuthContext';

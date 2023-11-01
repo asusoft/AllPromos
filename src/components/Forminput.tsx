@@ -3,11 +3,21 @@ import React from 'react';
 import { View, TextInput, StyleSheet, Text } from 'react-native';
 import { COLORS } from '../../assets/constants/theme';
 
-const Forminput = ({
+
+
+type FormInputProps =  {
+    placeholder: string,
+    secureTextEntry?: boolean,
+    appendComponent?: any;
+    errorMsg: string;
+    onChange: (text: string) => void;
+  };
+
+const Forminput:React.FunctionComponent<FormInputProps> = ({
     placeholder,
     secureTextEntry,
-    keyboardType,
-    autoComplete,
+    autoComplete = 'off',
+    autoCapitalize = 'none',
     value,
     onChange,
     appendComponent,
@@ -22,9 +32,8 @@ const Forminput = ({
                     placeholder={placeholder}
                     placeholderTextColor={COLORS.light}
                     secureTextEntry={secureTextEntry}
-                    keyboardType={keyboardType}
                     autoComplete={autoComplete}
-                    autoCapitalize='none'
+                    autoCapitalize={autoCapitalize}
                     onChangeText={text => onChange(text)}
                     value={value}
                 />
