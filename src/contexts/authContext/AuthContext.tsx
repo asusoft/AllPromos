@@ -3,50 +3,82 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { loginUser, fetchUserData, signOutUser } from '../../../server/services/authService';
 
-const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-    const [authToken, setAuthToken] = useState(null);
-    const [authUser, setAuthUser] = useState(null)
+type User = {
+    __typename: 'User';
+    id: string;
+    login: string;
+    email: string;
+    dateOfBirth: string;
+    description: string;
+    name: string;
+    phone: string;
+    sex: string;
+    address: {
+        city: string;
+    };
+    subscribersCount: number;
+    website: string;
+    shortDescription: string;
+    avatar: {
+        path: string;
+    };
+    likesCount: number;
+    viewsCount: number;
+};
+
+interface AuthContextData {
+    authToken: string | null;
+    signInUser: (login: string, password: string) => Promise<void>;
+    authUser: User | null;
+    signOut: () => Promise<void>;
+}
+
+
+interface AuthContextProviderProps {
+    children: React.ReactNode;
+}
+
+const AuthContext = createContext<AuthContextData | null>(null);
+
+
+export const AuthContextProvider: React.FunctionComponent<AuthContextProviderProps> = ({ children }) => {
+    const [authToken, setAuthToken] = useState<string | null>(null);
+    const [authUser, setAuthUser] = useState<User | null>(null)
 
 
     React.useEffect(() => {
-        // Define an async function to fetch the authToken
         const fetchAuthToken = async () => {
             try {
                 const authTokenFromStorage = await AsyncStorage.getItem('authToken');
                 setAuthToken(authTokenFromStorage);
             } catch (error) {
-                // Handle errors if AsyncStorage retrieval fails
                 console.error('Error fetching authToken:', error);
             }
         };
 
-        // Call the async function to fetch the authToken
         fetchAuthToken();
     }, []);
 
-    const signInUser = async (login, password) => {
+    const signInUser = async (login: string, password: string) => {
         const result = await attemptLogin(login, password);
 
-        if (isSuccessfulLogin(result)) {
+        if (result.__typename === 'TokenPair') {
             await saveAuthTokens(result.accessToken, result.refreshToken);
         } else {
             throw new Error(result.status);
         }
     };
 
-    const attemptLogin = async (login, password) => {
+    const attemptLogin = async (login: string, password: string) => {
         try {
             return await loginUser(login, password);
-        } catch (error) {
-            throw new Error('Failed to login user:', error);
+        } catch (error: any) {
+            throw new Error('Failed to login user:' + error.message);
         }
     };
 
-    const isSuccessfulLogin = (result) => result.__typename === 'TokenPair';
-
-    const saveAuthTokens = async (accessToken, refreshToken) => {
+    const saveAuthTokens = async (accessToken: string, refreshToken: string) => {
         setAuthToken(accessToken);
         await AsyncStorage.setItem('authToken', accessToken);
         await AsyncStorage.setItem('refreshToken', refreshToken);
@@ -83,7 +115,7 @@ export const AuthProvider = ({ children }) => {
     }, [authToken])
 
     return (
-        <AuthContext.Provider value={{ authToken, setAuthToken, signInUser, authUser, signOut }}>
+        <AuthContext.Provider value={{ authToken, signInUser, authUser, signOut }}>
             {children}
         </AuthContext.Provider>
     );
@@ -92,7 +124,7 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
     const context = useContext(AuthContext);
     if (!context) {
-        throw new Error('useAuth must be used within an AuthProvider');
+        throw new Error('useAuth must be used within an AuthContextProvider');
     }
     return context;
 };

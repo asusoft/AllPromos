@@ -21,7 +21,7 @@ const TextButton:React.FC<TextButtonProps> = ({
     textColor = 'WHITE' 
 }) => {
     return (
-        <TouchableOpacity onPress={() => onPress()} style={{ backgroundColor: color, ...styles.button }}>
+        <TouchableOpacity onPress={() => onPress()} style={{ backgroundColor: COLORS[color], ...styles.button }}>
             {
                 icon ? (
                     <Image
