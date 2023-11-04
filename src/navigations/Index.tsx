@@ -10,7 +10,19 @@ import SignIn from "../screens/AuthScreens/SignIn";
 import TempScreen from "../screens/TempScreen";
 import { COLORS, SIZES } from "../../assets/constants/theme";
 
-const RootStack = createNativeStackNavigator();
+type RootStackParamList = {
+    BottomTab: undefined;
+    Auth: undefined;
+};
+
+type BottomTabStackParamList = {
+    Home: undefined;
+    Draw: undefined;
+    Bookmark: undefined;
+    Profile: undefined;
+};
+
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => {
     const { authToken } = useAuth();
@@ -40,7 +52,7 @@ const RootNavigator = () => {
     }
 }
 
-const BottomTab = createBottomTabNavigator();
+const BottomTab = createBottomTabNavigator<BottomTabStackParamList>();
 const BottomTabNavigator = () => {
     return (
         <BottomTab.Navigator
