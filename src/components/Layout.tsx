@@ -2,23 +2,10 @@ import React, { ReactNode } from 'react';
 import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native';
 import Header from './Header';
 import { COLORS, SIZES } from '../../assets/constants/theme';
+import { LayoutProps } from '../../types';
 
 
-export type ColorKey = keyof typeof COLORS;
-
-type LayoutProps = {
-    title: string,
-    leftIcon: any,
-    titleColor: ColorKey,
-    subtitle: string,
-    subtitleColor?: ColorKey,
-    subtitleIcon?: any,
-    logoSource: any ,
-    logoSize?: string,
-    children: ReactNode,
-}
-
-const Layout:React.FC<LayoutProps> = ({
+const Layout: React.FC<LayoutProps> = ({
     title,
     leftIcon,
     titleColor,
@@ -71,12 +58,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     logoSmall: {
-        height: 100, 
-        width: 100,  
+        height: 100,
+        width: 100,
     },
     logoBig: {
-        height: 130, 
-        width: 130,  
+        height: 130,
+        width: 130,
     },
 });
 

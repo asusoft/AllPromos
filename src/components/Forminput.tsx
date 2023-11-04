@@ -2,18 +2,10 @@
 import React from 'react';
 import { View, TextInput, StyleSheet, Text, TextInputProps } from 'react-native';
 import { COLORS } from '../../assets/constants/theme';
+import { FormInputProps } from '../../types';
 
 
-
-type FormInputProps =  TextInputProps & {
-    placeholder: string,
-    secureTextEntry?: boolean,
-    appendComponent?: any;
-    errorMsg: string;
-    onTextChange: (text: string) => void;
-  };
-
-const Forminput:React.FC<FormInputProps> = ({
+const Forminput: React.FC<FormInputProps> = ({
     placeholder,
     secureTextEntry,
     autoComplete = 'off',

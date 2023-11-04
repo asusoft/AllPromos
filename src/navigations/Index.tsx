@@ -9,18 +9,8 @@ import UserInfoScreen from "../screens/UserInfoScreen/UserInfo";
 import SignIn from "../screens/AuthScreens/SignIn";
 import TempScreen from "../screens/TempScreen";
 import { COLORS, SIZES } from "../../assets/constants/theme";
+import { RootStackParamList, BottomTabStackParamList } from "../../types";
 
-type RootStackParamList = {
-    BottomTab: undefined;
-    Auth: undefined;
-};
-
-type BottomTabStackParamList = {
-    Home: undefined;
-    Draw: undefined;
-    Bookmark: undefined;
-    Profile: undefined;
-};
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 

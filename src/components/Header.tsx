@@ -1,16 +1,9 @@
 import React from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
 import { COLORS } from "../../assets/constants/theme";
+import { HearderProps } from "../../types";
 
-export type ColorKey = keyof typeof COLORS;
-
-type HearderProps = {
-    title: string,
-    icon: any;
-    color: ColorKey
-}
-
-const Header:React.FC<HearderProps> = ({ title, icon, color }) => {
+const Header: React.FC<HearderProps> = ({ title, icon, color }) => {
     return (
         <View style={styles.Header}>
             <Image

@@ -1,24 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { COLORS, SIZES } from "../../assets/constants/theme";
+import { TextButtonProps } from "../../types";
 
-
-export type ColorKey = keyof typeof COLORS;
-
-type TextButtonProps = {
-    icon?: any, 
-    text: string, 
-    color: ColorKey, 
-    onPress: () => void, 
-    textColor?: ColorKey
-}
-
-const TextButton:React.FC<TextButtonProps> = ({ 
-    icon, 
-    text, 
-    color, 
-    onPress, 
-    textColor = 'WHITE' 
+const TextButton: React.FC<TextButtonProps> = ({
+    icon,
+    text,
+    color,
+    onPress,
+    textColor = 'WHITE'
 }) => {
     return (
         <TouchableOpacity onPress={() => onPress()} style={{ backgroundColor: COLORS[color], ...styles.button }}>

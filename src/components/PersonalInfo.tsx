@@ -1,36 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from 'react-native';
 import { COLORS, SIZES } from "../../assets/constants/theme";
+import { UserProps } from "../../types";
 
 
-type User = {
-    __typename: 'User';
-    id: string;
-    login: string;
-    email: string;
-    dateOfBirth: string;
-    description: string;
-    name: string;
-    phone: string;
-    sex: string;
-    address: {
-        city: string;
-    };
-    subscribersCount: number;
-    website: string;
-    shortDescription: string;
-    avatar: {
-        path: string;
-    };
-    likesCount: number;
-    viewsCount: number;
-};
-
-type UserProps = {
-    user: User | null;
-};
-
-const PersonalInfo:React.FC<UserProps> = ({ user }) => {
+const PersonalInfo: React.FC<UserProps> = ({ user }) => {
 
     const userInfo = [
         {

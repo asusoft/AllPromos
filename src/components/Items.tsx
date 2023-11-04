@@ -1,18 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { COLORS } from "../../assets/constants/theme";
-
-type Item = {
-    id: number;
-    image: {
-        uri: string;
-    };
-    quantity: number;
-};
-
-type ItemsProps = {
-    items: Item[];
-};
+import { ItemsProps } from "../../types";
 
 
 const Items: React.FC<ItemsProps> = ({ items }) => {

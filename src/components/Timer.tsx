@@ -2,23 +2,12 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { COLORS, SIZES } from "../../assets/constants/theme";
 import icons from "../../assets/constants/icons";
+import { TimerCardProp, TimerProps } from "../../types";
 
 
-export type ColorKey = keyof typeof COLORS;
+const Timer: React.FC<TimerProps> = ({ timer }) => {
 
-type TimerProps = {
-    timer: number; 
-  };
-
-  type TimerCardProp = {
-    digit: string,
-    color: ColorKey
-  }
-
-
-const Timer:React.FC<TimerProps> = ({ timer }) => {
-
-    const TimerDigitCard:React.FC<TimerCardProp> = ({ digit, color }) => {
+    const TimerDigitCard: React.FC<TimerCardProp> = ({ digit, color }) => {
         return (
             <View style={{ ...styles.timer, backgroundColor: COLORS[color] }}>
                 <Text style={{ fontSize: 40, color: color === "PRIMARY" ? COLORS.WHITE : COLORS.BLACK, fontWeight: '600' }}>{digit}</Text>

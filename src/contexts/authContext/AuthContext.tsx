@@ -1,43 +1,8 @@
 import React, { createContext, useState, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { User, AuthContextData, AuthContextProviderProps } from '../../../types';
 
 import { loginUser, fetchUserData, signOutUser } from '../../../server/services/authService';
-
-
-type User = {
-    __typename: 'User';
-    id: string;
-    login: string;
-    email: string;
-    dateOfBirth: string;
-    description: string;
-    name: string;
-    phone: string;
-    sex: string;
-    address: {
-        city: string;
-    };
-    subscribersCount: number;
-    website: string;
-    shortDescription: string;
-    avatar: {
-        path: string;
-    };
-    likesCount: number;
-    viewsCount: number;
-};
-
-interface AuthContextData {
-    authToken: string | null;
-    signInUser: (login: string, password: string) => Promise<void>;
-    authUser: User | null;
-    signOut: () => Promise<void>;
-}
-
-
-interface AuthContextProviderProps {
-    children: React.ReactNode;
-}
 
 const AuthContext = createContext<AuthContextData | null>(null);
 
